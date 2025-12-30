@@ -1,0 +1,10 @@
+export const Footer = () => {
+	return (
+		<footer
+			className="absolute w-full text-center text-white py-5"
+			style={{ bottom: "0" }}
+		>
+			BimaAdi © 2026
+		</footer>
+	);
+};
