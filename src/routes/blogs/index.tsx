@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Card } from "@/components/routes/blogs/Card";
+import { Card } from "@/client/components/routes/blogs/Card";
 import blogs from "@/data/blogs.json";
 
 export const Route = createFileRoute("/blogs/")({

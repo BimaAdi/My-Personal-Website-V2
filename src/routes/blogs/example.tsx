@@ -5,7 +5,7 @@ import {
 	P,
 	Section,
 	Title,
-} from "@/components/routes/blogs/common";
+} from "@/client/components/routes/blogs/common";
 
 export const Route = createFileRoute("/blogs/example")({
 	component: RouteComponent,

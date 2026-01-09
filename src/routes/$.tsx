@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { I8n } from "@/components/shared/I8n";
-import { useI8nStore } from "@/store/i8n";
+import { I8n } from "@/client/components/shared/I8n";
+import { useI8nStore } from "@/client/store/i8n";
 
 export const Route = createFileRoute("/$")({
 	component: RouteComponent,

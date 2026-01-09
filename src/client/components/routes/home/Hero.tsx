@@ -1,4 +1,4 @@
-import myProfilePicture from "@/components/shared/profile.jpeg";
+import myProfilePicture from "@/client/components/shared/profile.jpeg";
 
 export const Hero = () => {
 	return (

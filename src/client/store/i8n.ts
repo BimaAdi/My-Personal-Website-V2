@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { Lang } from "@/components/shared/I8n";
+import type { Lang } from "@/client/components/shared/I8n";
 
 // TODO: internationalization make page blink on load, try change to cookie + SSR
 

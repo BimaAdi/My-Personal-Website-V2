@@ -17,9 +17,9 @@ import {
 	SiTypescript,
 } from "react-icons/si";
 import { TbBrandGolang } from "react-icons/tb";
-import { I8n } from "@/components/shared/I8n";
-import useWindowDimension from "@/hooks/useWindowDimension";
-import { useI8nStore } from "@/store/i8n";
+import { I8n } from "@/client/components/shared/I8n";
+import useWindowDimension from "@/client/hooks/useWindowDimension";
+import { useI8nStore } from "@/client/store/i8n";
 
 const techIconMapping = {
 	react: FaReact,

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { twMerge } from "tailwind-merge";
-import { useI8nStore } from "@/store/i8n";
+import { useI8nStore } from "@/client/store/i8n";
 
 export const Navbar = () => {
 	const location = useLocation();

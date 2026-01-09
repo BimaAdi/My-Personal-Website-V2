@@ -5,7 +5,7 @@ import {
 	HeadContent,
 	Scripts,
 } from "@tanstack/react-router";
-import { Navbar } from "@/components/shared/Navbar";
+import { Navbar } from "@/client/components/shared/Navbar";
 // import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 // import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
