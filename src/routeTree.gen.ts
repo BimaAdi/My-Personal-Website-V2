@@ -11,9 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as BlogsRouteRouteImport } from './routes/blogs/route'
+import { Route as ApiRouteRouteImport } from './routes/api/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogsIndexRouteImport } from './routes/blogs/index'
 import { Route as BlogsExampleRouteImport } from './routes/blogs/example'
+import { Route as ApiSplatRouteImport } from './routes/api/$'
 
 const SplatRoute = SplatRouteImport.update({
   id: '/$',
@@ -23,6 +25,11 @@ const SplatRoute = SplatRouteImport.update({
 const BlogsRouteRoute = BlogsRouteRouteImport.update({
   id: '/blogs',
   path: '/blogs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiRouteRoute = ApiRouteRouteImport.update({
+  id: '/api',
+  path: '/api',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -40,38 +47,65 @@ const BlogsExampleRoute = BlogsExampleRouteImport.update({
   path: '/example',
   getParentRoute: () => BlogsRouteRoute,
 } as any)
+const ApiSplatRoute = ApiSplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => ApiRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api': typeof ApiRouteRouteWithChildren
   '/blogs': typeof BlogsRouteRouteWithChildren
   '/$': typeof SplatRoute
+  '/api/$': typeof ApiSplatRoute
   '/blogs/example': typeof BlogsExampleRoute
   '/blogs/': typeof BlogsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api': typeof ApiRouteRouteWithChildren
   '/$': typeof SplatRoute
+  '/api/$': typeof ApiSplatRoute
   '/blogs/example': typeof BlogsExampleRoute
   '/blogs': typeof BlogsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api': typeof ApiRouteRouteWithChildren
   '/blogs': typeof BlogsRouteRouteWithChildren
   '/$': typeof SplatRoute
+  '/api/$': typeof ApiSplatRoute
   '/blogs/example': typeof BlogsExampleRoute
   '/blogs/': typeof BlogsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blogs' | '/$' | '/blogs/example' | '/blogs/'
+  fullPaths:
+    | '/'
+    | '/api'
+    | '/blogs'
+    | '/$'
+    | '/api/$'
+    | '/blogs/example'
+    | '/blogs/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$' | '/blogs/example' | '/blogs'
-  id: '__root__' | '/' | '/blogs' | '/$' | '/blogs/example' | '/blogs/'
+  to: '/' | '/api' | '/$' | '/api/$' | '/blogs/example' | '/blogs'
+  id:
+    | '__root__'
+    | '/'
+    | '/api'
+    | '/blogs'
+    | '/$'
+    | '/api/$'
+    | '/blogs/example'
+    | '/blogs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiRouteRoute: typeof ApiRouteRouteWithChildren
   BlogsRouteRoute: typeof BlogsRouteRouteWithChildren
   SplatRoute: typeof SplatRoute
 }
@@ -90,6 +124,13 @@ declare module '@tanstack/react-router' {
       path: '/blogs'
       fullPath: '/blogs'
       preLoaderRoute: typeof BlogsRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api': {
+      id: '/api'
+      path: '/api'
+      fullPath: '/api'
+      preLoaderRoute: typeof ApiRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -113,8 +154,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogsExampleRouteImport
       parentRoute: typeof BlogsRouteRoute
     }
+    '/api/$': {
+      id: '/api/$'
+      path: '/$'
+      fullPath: '/api/$'
+      preLoaderRoute: typeof ApiSplatRouteImport
+      parentRoute: typeof ApiRouteRoute
+    }
   }
 }
+
+interface ApiRouteRouteChildren {
+  ApiSplatRoute: typeof ApiSplatRoute
+}
+
+const ApiRouteRouteChildren: ApiRouteRouteChildren = {
+  ApiSplatRoute: ApiSplatRoute,
+}
+
+const ApiRouteRouteWithChildren = ApiRouteRoute._addFileChildren(
+  ApiRouteRouteChildren,
+)
 
 interface BlogsRouteRouteChildren {
   BlogsExampleRoute: typeof BlogsExampleRoute
@@ -132,6 +192,7 @@ const BlogsRouteRouteWithChildren = BlogsRouteRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiRouteRoute: ApiRouteRouteWithChildren,
   BlogsRouteRoute: BlogsRouteRouteWithChildren,
   SplatRoute: SplatRoute,
 }
