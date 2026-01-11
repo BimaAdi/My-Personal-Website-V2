@@ -1,5 +1,9 @@
+import type React from "react";
+
 export const Container = ({ children }: { children: React.ReactNode }) => {
-	return <main className="max-w-250 mx-auto px-4 text-white">{children}</main>;
+	return (
+		<main className="max-w-250 mx-auto px-4 pb-10 text-white">{children}</main>
+	);
 };
 
 export const Hero = ({ imageLink }: { imageLink?: string }) => {
@@ -49,4 +53,62 @@ export const Section = ({
 
 export const P = ({ children }: { children: React.ReactNode }) => {
 	return <p className="text-white text-justify pt-4">{children}</p>;
+};
+
+export const Table = ({
+	head,
+	body,
+}: {
+	head: React.ReactNode;
+	body: React.ReactNode;
+}) => {
+	return (
+		<table className="w-full text-left mt-4 overflow-x-scroll">
+			<thead>
+				<tr>{head}</tr>
+			</thead>
+			<tbody>{body}</tbody>
+		</table>
+	);
+};
+
+export const TableHeader = ({ children }: { children: React.ReactNode }) => {
+	return <th className="px-2 py-1 bg-secondary">{children}</th>;
+};
+
+export const TableRow = ({ children }: { children: React.ReactNode }) => {
+	return <tr className="border-t border-slate-200">{children}</tr>;
+};
+
+export const TableData = ({ children }: { children: React.ReactNode }) => {
+	return <td className="px-2 py-1">{children}</td>;
+};
+
+export const Ul = ({ children }: { children: React.ReactNode }) => {
+	return <ul className="list-disc list-inside">{children}</ul>;
+};
+
+export const Ol = ({ children }: { children: React.ReactNode }) => {
+	return <ol className="list-decimal list-inside">{children}</ol>;
+};
+
+export const Li = ({
+	children,
+	depth = 1,
+}: {
+	children: React.ReactNode;
+	depth?: 1 | 2 | 3 | 4;
+}) => {
+	switch (depth) {
+		case 1:
+			return <li className="">{children}</li>;
+		case 2:
+			return <li className="pl-4">{children}</li>;
+		case 3:
+			return <li className="pl-8">{children}</li>;
+		case 4:
+			return <li className="pl-12">{children}</li>;
+		default:
+			return <li className="">{children}</li>;
+	}
 };

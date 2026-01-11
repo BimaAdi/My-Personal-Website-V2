@@ -16,6 +16,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogsIndexRouteImport } from './routes/blogs/index'
 import { Route as BlogsExampleRouteImport } from './routes/blogs/example'
 import { Route as ApiSplatRouteImport } from './routes/api/$'
+import { Route as BlogsSqlVsNosqlIsBadComparisonChar123LangChar125RouteImport } from './routes/blogs/sql-vs-nosql-is-bad-comparison.{-$lang}'
 
 const SplatRoute = SplatRouteImport.update({
   id: '/$',
@@ -52,6 +53,12 @@ const ApiSplatRoute = ApiSplatRouteImport.update({
   path: '/$',
   getParentRoute: () => ApiRouteRoute,
 } as any)
+const BlogsSqlVsNosqlIsBadComparisonChar123LangChar125Route =
+  BlogsSqlVsNosqlIsBadComparisonChar123LangChar125RouteImport.update({
+    id: '/sql-vs-nosql-is-bad-comparison/{-$lang}',
+    path: '/sql-vs-nosql-is-bad-comparison/{-$lang}',
+    getParentRoute: () => BlogsRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +68,7 @@ export interface FileRoutesByFullPath {
   '/api/$': typeof ApiSplatRoute
   '/blogs/example': typeof BlogsExampleRoute
   '/blogs/': typeof BlogsIndexRoute
+  '/blogs/sql-vs-nosql-is-bad-comparison/{-$lang}': typeof BlogsSqlVsNosqlIsBadComparisonChar123LangChar125Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -69,6 +77,7 @@ export interface FileRoutesByTo {
   '/api/$': typeof ApiSplatRoute
   '/blogs/example': typeof BlogsExampleRoute
   '/blogs': typeof BlogsIndexRoute
+  '/blogs/sql-vs-nosql-is-bad-comparison/{-$lang}': typeof BlogsSqlVsNosqlIsBadComparisonChar123LangChar125Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -79,6 +88,7 @@ export interface FileRoutesById {
   '/api/$': typeof ApiSplatRoute
   '/blogs/example': typeof BlogsExampleRoute
   '/blogs/': typeof BlogsIndexRoute
+  '/blogs/sql-vs-nosql-is-bad-comparison/{-$lang}': typeof BlogsSqlVsNosqlIsBadComparisonChar123LangChar125Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -90,8 +100,16 @@ export interface FileRouteTypes {
     | '/api/$'
     | '/blogs/example'
     | '/blogs/'
+    | '/blogs/sql-vs-nosql-is-bad-comparison/{-$lang}'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api' | '/$' | '/api/$' | '/blogs/example' | '/blogs'
+  to:
+    | '/'
+    | '/api'
+    | '/$'
+    | '/api/$'
+    | '/blogs/example'
+    | '/blogs'
+    | '/blogs/sql-vs-nosql-is-bad-comparison/{-$lang}'
   id:
     | '__root__'
     | '/'
@@ -101,6 +119,7 @@ export interface FileRouteTypes {
     | '/api/$'
     | '/blogs/example'
     | '/blogs/'
+    | '/blogs/sql-vs-nosql-is-bad-comparison/{-$lang}'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -161,6 +180,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiSplatRouteImport
       parentRoute: typeof ApiRouteRoute
     }
+    '/blogs/sql-vs-nosql-is-bad-comparison/{-$lang}': {
+      id: '/blogs/sql-vs-nosql-is-bad-comparison/{-$lang}'
+      path: '/sql-vs-nosql-is-bad-comparison/{-$lang}'
+      fullPath: '/blogs/sql-vs-nosql-is-bad-comparison/{-$lang}'
+      preLoaderRoute: typeof BlogsSqlVsNosqlIsBadComparisonChar123LangChar125RouteImport
+      parentRoute: typeof BlogsRouteRoute
+    }
   }
 }
 
@@ -179,11 +205,14 @@ const ApiRouteRouteWithChildren = ApiRouteRoute._addFileChildren(
 interface BlogsRouteRouteChildren {
   BlogsExampleRoute: typeof BlogsExampleRoute
   BlogsIndexRoute: typeof BlogsIndexRoute
+  BlogsSqlVsNosqlIsBadComparisonChar123LangChar125Route: typeof BlogsSqlVsNosqlIsBadComparisonChar123LangChar125Route
 }
 
 const BlogsRouteRouteChildren: BlogsRouteRouteChildren = {
   BlogsExampleRoute: BlogsExampleRoute,
   BlogsIndexRoute: BlogsIndexRoute,
+  BlogsSqlVsNosqlIsBadComparisonChar123LangChar125Route:
+    BlogsSqlVsNosqlIsBadComparisonChar123LangChar125Route,
 }
 
 const BlogsRouteRouteWithChildren = BlogsRouteRoute._addFileChildren(

@@ -2,9 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
 	Container,
 	Hero,
+	Li,
+	Ol,
 	P,
 	Section,
+	Table,
+	TableData,
+	TableHeader,
+	TableRow,
 	Title,
+	Ul,
 } from "@/client/components/routes/blogs/common";
 
 export const Route = createFileRoute("/blogs/example")({
@@ -29,6 +36,49 @@ function RouteComponent() {
 				dolorum iure quae, laudantium rem unde dolor minima aut? Tenetur numquam
 				delectus alias optio.
 			</P>
+			<Table
+				head={
+					<>
+						<TableHeader>Header 1</TableHeader>
+						<TableHeader>Header 2</TableHeader>
+					</>
+				}
+				body={
+					<>
+						<TableRow>
+							<TableData>Data 1</TableData>
+							<TableData>Data 2</TableData>
+						</TableRow>
+						<TableRow>
+							<TableData>Data 3</TableData>
+							<TableData>Data 4</TableData>
+						</TableRow>
+					</>
+				}
+			/>
+			<P>Unordered List:</P>
+			<Ul>
+				<Li>First item</Li>
+				<Li>Second item</Li>
+				<Li>Third item</Li>
+				<Ul>
+					<Li depth={2}>Nested first item</Li>
+					<Li depth={2}>Nested second item</Li>
+					<Li depth={2}>Nested third item</Li>
+				</Ul>
+				<Li>Fourth item</Li>
+			</Ul>
+			<P>Ordered List:</P>
+			<Ol>
+				<Li>First ordered item</Li>
+				<Li>Second ordered item</Li>
+				<Ol>
+					<Li depth={2}>Nested first ordered item</Li>
+					<Li depth={2}>Nested second ordered item</Li>
+					<Li depth={2}>Nested third ordered item</Li>
+				</Ol>
+				<Li>Third ordered item</Li>
+			</Ol>
 		</Container>
 	);
 }

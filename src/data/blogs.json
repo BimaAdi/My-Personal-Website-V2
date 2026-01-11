@@ -1,5 +1,10 @@
 [
 	{
+		"title": "Sql vs NoSql is bad comparison",
+		"link": "sql-vs-nosql-is-bad-comparison",
+		"tags": ["Software Engineering", "Database"]
+	},
+	{
 		"title": "Writing Python code like Typescript",
 		"link": "https://dev.to/bimaadi/writing-python-code-like-typescript-1le",
 		"tags": ["Python", "Typescript"]
